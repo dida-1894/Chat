@@ -1,9 +1,10 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import { App } from './App'
+import { Chart } from './component/chat';
+import "antd/dist/antd.css";
 
 ReactDOM.render(
-    <App />,
+    <Chart />,
   document.getElementById('app')
 );
 module.hot.accept();
