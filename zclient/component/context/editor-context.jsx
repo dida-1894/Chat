@@ -12,7 +12,15 @@ export const EditorContextProvider = (props) => {
             form,
             postMessage: (text) => {
                 socket.emit('chat:message', {
-                    text,
+                    value: text,
+                    type: 'text',
+                    date: +new Date(),
+                })
+            },
+            uploadImg: (base64) => {
+                socket.emit('chat:message', {
+                    type: 'img',
+                    value: base64,
                     date: +new Date(),
                 })
             }

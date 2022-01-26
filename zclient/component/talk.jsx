@@ -13,10 +13,24 @@ export const Talk = () => {
         editor.form.resetFields(['text'])
     }, [editor])
 
+    const uploadImg = useCallback((file) => {
+        console.log(file)
+        return new Promise((resolve, reject) => {
+            const reader = new FileReader();
+            reader.readAsDataURL(file);
+            reader.onload = () => {
+                // console.log(reader.result)
+                editor.uploadImg(reader.result)
+                resolve(reader.result)
+            };
+            reader.onerror = error => reject(error);
+        });
+    }, [editor])
+
     return <div className='talk'>
         <Form form={editor.form} onFinish={submit}>
             <div className='tools'>
-                <Upload>
+                <Upload action={uploadImg} showUploadList={false}>
                     <FileImageOutlined className='item' />
                 </Upload>
             </div>

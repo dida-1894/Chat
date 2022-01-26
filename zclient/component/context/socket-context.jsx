@@ -11,7 +11,6 @@ export const SocketContextProvider = (props) => {
             setSocket(socket)
             console.log(socket.id);
         });
-        console.log('=========> connect')
         return () => {
             socket.disconnect()
         }
