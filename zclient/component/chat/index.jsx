@@ -1,20 +1,16 @@
-import React from 'react'
-import { useConnect } from '../../hook/useConnect'
-import { useMessageList } from '../../hook/useMessageList'
+import { Spin } from 'antd'
+import React, { useContext } from 'react'
+import { SocketContext } from '../context/socket-context'
+import { MessageList } from '../message/list'
 import { Talk } from '../talk'
-import { Spin as Loading  } from 'antd'
-const MessageList = () => {
-    const [messageList] = useMessageList()
+import './style.less'
 
-    return <div>
-        {messageList.map((item, i) => <div k={i}>{item}</div>)}
-    </div>
-}
 export const Chart = () => {
-    const io = useConnect()
-    if (!io) return <Loading />
+    const io = useContext(SocketContext)
 
-    return <div>
+    if (!io) return <Spin />
+
+    return <div className='container'>
         <MessageList />
         <Talk />
     </div>

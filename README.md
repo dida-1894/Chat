@@ -6,5 +6,5 @@ npm run build
 npm start
 
 ## develop
-npm run dev
 npm start
+npm run dev

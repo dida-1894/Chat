@@ -1,0 +1,20 @@
+@import url('../styles/variable.less');
+.talk {
+    position: relative;
+    button {
+        position: absolute;
+        bottom: 10px;
+        right: 10px;
+    }
+    .tools {
+        border-top: 1px solid @borderColor;
+        line-height: 32px;
+        display: flex;
+        .item {
+            color: @lightTextColor;
+            font-size: 14px;
+            padding: 0px 12px;
+            cursor: pointer;
+        }
+    }
+}

@@ -1,9 +1,14 @@
 import React from 'react';
-import { Message } from './component/message';
+import { Chart } from './component/chat';
+import { EditorContextProvider } from './component/context/editor-context';
+import { SocketContextProvider } from './component/context/socket-context';
 
 export const App = () => {
-    const msgList = ['duds', 'dshf']
-    return <div>
-        {msgList.map(m => (<Message msg={m} key={m} />))}
-    </div>
+    return (
+        <SocketContextProvider>
+            <EditorContextProvider>
+                <Chart />
+            </EditorContextProvider>
+        </SocketContextProvider>
+    )
 }
