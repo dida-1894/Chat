@@ -3,6 +3,7 @@ const app = express()
 const http = require('http')
 const server = http.createServer(app)
 const { Server } = require("socket.io")
+const socket = require('./room')
 
 const io = new Server(server, {
     cors: {
@@ -14,18 +15,7 @@ const io = new Server(server, {
 app.set('views', __dirname + '/views');
 app.use(express.static(__dirname + '/public'));
 
-io.on('connection', (socket) => {
-    console.log('a user connected');
-    socket.on('disconnect', () => {
-        console.log('user disconnected');
-    });
-
-    socket.on('chat:message', (msg) => {
-        console.log('=======>, 响应')
-        // console.log('message: ' , msg);
-        io.emit('chat:message', msg);
-    });
-});
+io.on('connection', socket);
 
 server.listen(3200, () => {
   console.log('listening on *:3200');

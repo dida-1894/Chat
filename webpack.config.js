@@ -48,6 +48,7 @@ module.exports = {
   ],
   devServer: {
     port: PORT,
+    historyApiFallback: { index: "/", disableDotRule: true },
     static: path.resolve(__dirname, './public'),
     compress: true,
     hot: true,

@@ -1,4 +1,37 @@
+@import url('../../styles/variable.less');
+
 .message-list {
     height: 350px;
     overflow-y: auto;
+    display: flex;
+    flex-direction: column;
+    .item-container {
+        margin: 8px 16px;
+        &.from {
+            margin-right: auto;
+        }
+        &.to {
+            margin-left: auto;
+        }
+        .time {
+            color: @lightTextColor;
+            font-size: 12px;
+        }
+
+        .item {
+            padding: 8px 12px;
+            max-width: 250px;
+            font-size: 14px;
+            color: @textColor;
+            border-radius: 5px;
+            &.to {
+                background-color: @primary;
+                border: 1px solid @primary;
+            }
+            &.from {
+                border: 1px solid @borderColor;
+            }
+        }
+
+    }
 }

@@ -1,16 +1,15 @@
 import { useContext, useEffect, useState } from "react"
-import { SocketContext } from "../component/context/socket-context"
+import { UserContext } from "../component/context/user-context"
 
 
 export const useMessageList = () => {
-    const socket = useContext(SocketContext)
+    const { socket } = useContext(UserContext)
     const [list, setList] = useState([])
     useEffect(() => {
         if (!socket) return
-        socket.on('chat:message', (msg) => {
-            list.push(msg)
-            setList([...list])
-            console.log(msg)
+        socket.on('chat:message', (msgList) => {
+            setList(msgList)
+            console.log(msgList)
         })
     }, [socket])
 

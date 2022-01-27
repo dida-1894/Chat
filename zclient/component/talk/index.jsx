@@ -2,7 +2,7 @@ import React, { useCallback, useContext } from 'react'
 import { Input, Button, Form, message, Upload } from 'antd'
 import { FileImageOutlined } from '@ant-design/icons'
 import './style.less'
-import { EditorContext } from './context/editor-context'
+import { EditorContext } from '../context/editor-context'
 
 export const Talk = () => {
     const editor = useContext(EditorContext)

@@ -1,0 +1,21 @@
+@import url('../../styles/variable.less');
+
+.room {
+    display: flex;
+    width: 250px;
+    overflow-y: auto;
+    height: 500px;
+    flex-wrap: wrap;
+    border: 1px solid @borderColor;
+    flex-direction: row;
+    /* align-items: flex-start; */
+    align-content: flex-start;
+    .item {
+        margin: 8px;
+        padding: 8px 12px;
+        border-radius: 10px;
+        background-color: fade(@primary, 20%);
+        word-break: break-all;
+        cursor: pointer;
+    }
+}

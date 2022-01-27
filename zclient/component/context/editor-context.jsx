@@ -1,20 +1,23 @@
 import { useForm } from "antd/lib/form/Form"
 import React, { useContext, useMemo } from "react"
-import { SocketContext } from "./socket-context"
+import { UserContext } from "./user-context"
 
 export const EditorContext = React.createContext(null)
 
 export const EditorContextProvider = (props) => {
     const [form] = useForm()
-    const socket = useContext(SocketContext)
+    const { socket, room: roomID, userID } = useContext(UserContext)
+
     const editor = useMemo(() => {
         return {
             form,
             postMessage: (text) => {
                 socket.emit('chat:message', {
-                    value: text,
                     type: 'text',
+                    value: text,
                     date: +new Date(),
+                    roomID,
+                    userID,
                 })
             },
             uploadImg: (base64) => {
@@ -22,6 +25,8 @@ export const EditorContextProvider = (props) => {
                     type: 'img',
                     value: base64,
                     date: +new Date(),
+                    roomID,
+                    userID,
                 })
             }
         }
