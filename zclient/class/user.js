@@ -8,7 +8,6 @@ export class User {
         this.roomID = room
     }
     disconnect = function (){
-        this.socket.leave(this.socket.id)
         this.socket.disconnect()
     }
 }

@@ -1,3 +1,4 @@
+import { message } from "antd"
 import { useForm } from "antd/lib/form/Form"
 import React, { useContext, useMemo } from "react"
 import { UserContext } from "./user-context"
@@ -9,14 +10,16 @@ export const EditorContextProvider = (props) => {
     const { socket, roomID, userID } = useContext(UserContext)
 
     const editor = useMemo(() => {
-        console.log('=======>', socket)
+        console.log('=======>', roomID)
         return {
             form,
             postMessage: (text) => {
+                console.log('=====>', text)
+                if (!roomID) return message.warning('请选择相应的房间')
                 socket.emit('chat:message', {
                     type: 'text',
                     value: text,
-                    date: +new Date(),
+                    date: (+new Date()),
                     roomID,
                     userID,
                 })
@@ -25,7 +28,7 @@ export const EditorContextProvider = (props) => {
                 socket.emit('chat:message', {
                     type: 'img',
                     value: base64,
-                    date: +new Date(),
+                    date: (+new Date()),
                     roomID,
                     userID,
                 })

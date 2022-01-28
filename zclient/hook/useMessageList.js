@@ -9,7 +9,7 @@ export const useMessageList = () => {
         if (!socket) return
         socket.on('chat:message', (msgList) => {
             setList(msgList)
-            console.log(msgList)
+            console.log('=====> msgList', msgList)
         })
     }, [socket])
 

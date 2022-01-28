@@ -10,9 +10,10 @@ export const MessageList = () => {
     return <div className='message-list'>
         {messageList.map((item) => {
             const { type, date, value, userID: id } = item
+
             if (type == 'img') return <img src={value} />
             return (
-                <div className='item-container' key={item.date+item.user}>
+                <div className={`item-container ${userID == id ? 'to' : 'from'}`} key={id+date}>
                     <div className={`item ${userID == id ? 'to' : 'from'}`}>{value}</div>
                 </div>
             )
