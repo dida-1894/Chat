@@ -42,20 +42,17 @@ class Custom {
 
     callService() {
         this.socket.on('call:service', () => {
-            console.log('======>', lobby.serviceCount, lobby.serviceCount == 0)
-
             lobby.hotRooms.add(this.room)
             this.socket.to(lobby.serviceRoom).emit('room:list', [...lobby.hotRooms])
 
-            if (lobby.serviceCount == 0) this.robot.postMessage(new RMessage('暂无在线客服， 你可以咨询上述给出的问题'))
-            else this.robot.postMessage(new RMessage('稍等，客服正在接入'))
+            if (lobby.serviceCount == 0) this.robot.postMessage(new RMessage('暂无在线客服， 您可以询问上述给出的问题'))
+            else this.robot.postMessage(new RMessage('稍等，客服正在接入...'))
         })
     }
 
     sendMessage() {
         this.socket.on('chat:message', (msg) => {
             const roomMsg = lobby.rooms.get(this.room)
-            // if (!roomMsg) return // cb({ status: 500, errMsg: 'DOES NOT EXIST ROOM' })
 
             roomMsg.msg.push(msg)
             lobby.rooms.set(this.room, roomMsg)
@@ -70,7 +67,6 @@ class Custom {
 
             // lobby.rooms.delete(this.room)
             lobby.hotRooms.delete(this.room)
-            console.log('user disconnected', this.socket.id);
         });
     }
 
@@ -105,7 +101,7 @@ class Service {
                 room.msg.push(msg)
                 lobby.rooms.set(msg.roomID, room)
             }
-            console.log(msg)
+
             this.robot.postMessage(msg, msg.roomID)
         });
     }
@@ -131,7 +127,6 @@ class Service {
     }
     getRoomList() {
         this.socket.on(`room:list`, (cb) => {
-            console.log('=====> room keys', lobby.rooms.keys())
             cb({
                 status: 200,
                 data: [...lobby.hotRooms],

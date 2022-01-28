@@ -45,7 +45,7 @@ export const UserContextProvider = (props) => {
             {props.children}
         </UserContext.Provider>
     )
-        console.log('=====>', userInfo)
+
     return (
         <UserContext.Provider value={userInfo}>
             <UserDispatchContext.Provider value={changeRoom}>

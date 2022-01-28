@@ -2,6 +2,8 @@ import React, { useContext, useEffect, useRef } from 'react'
 import './style.less'
 import { useMessageList } from '../../hook/useMessageList'
 import { UserContext } from '../context/user-context'
+import { Image } from 'antd'
+import { MESSAGE_TYPE } from '../../constant'
 
 export const MessageList = () => {
     const { userID } = useContext(UserContext)
@@ -17,10 +19,11 @@ export const MessageList = () => {
                 {messageList.map((item) => {
                     const { type, date, value, userID: id } = item
         
-                    if (type == 'img') return <img src={value} />
                     return (
                         <div className={`item-container ${userID == id ? 'to' : 'from'}`} key={id+date}>
-                            <div className={`item ${userID == id ? 'to' : 'from'}`}>{value}</div>
+                            <div className={`item ${userID == id ? 'to' : 'from'}`}>{
+                                type == MESSAGE_TYPE.IMG ? <Image src={value} /> : String(value)
+                            }</div>
                         </div>
                     )
                 })}

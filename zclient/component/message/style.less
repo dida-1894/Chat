@@ -24,12 +24,17 @@
         .item {
             padding: 8px 12px;
             max-width: 250px;
+            max-height: 200px;
+            overflow: hidden;
             font-size: 14px;
             color: @textColor;
             border-radius: 5px;
+            word-break: break-all;
+            // img { max-width:230px; max-height: 180px; overflow:hidden; }
             &.to {
                 background-color: @primary;
                 border: 1px solid @primary;
+                color: @white;
             }
             &.from {
                 border: 1px solid @borderColor;

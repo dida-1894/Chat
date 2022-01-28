@@ -13,7 +13,6 @@ export const EditorContextProvider = (props) => {
         return {
             form,
             postMessage: (text) => {
-                console.log('=====>', text, roomID)
                 if (!roomID) return message.warning('请选择相应的房间')
                 socket.emit('chat:message', {
                     type: 'text',
@@ -22,7 +21,7 @@ export const EditorContextProvider = (props) => {
                     roomID,
                     userID,
                 })
-                if (['请求人工服务', 'r'].includes(text)) socket.emit('call:service')
+                if (['请求人工服务', 'r', '人工服务', '人工'].includes(text)) socket.emit('call:service')
             },
             uploadImg: (base64) => {
                 socket.emit('chat:message', {

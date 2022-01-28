@@ -19,7 +19,6 @@ export const Talk = () => {
             const reader = new FileReader();
             reader.readAsDataURL(file);
             reader.onload = () => {
-                // console.log(reader.result)
                 editor.uploadImg(reader.result)
                 resolve(reader.result)
             };
@@ -30,7 +29,7 @@ export const Talk = () => {
     return <div className='talk'>
         <Form form={editor.form} onFinish={submit}>
             <div className='tools'>
-                <Upload action={uploadImg} showUploadList={false}>
+                <Upload action={uploadImg} showUploadList={false} accept='.jpg, .jpeg, .png, .svg'>
                     <FileImageOutlined className='item' />
                 </Upload>
             </div>
