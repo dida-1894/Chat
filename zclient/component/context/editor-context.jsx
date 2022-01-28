@@ -6,9 +6,10 @@ export const EditorContext = React.createContext(null)
 
 export const EditorContextProvider = (props) => {
     const [form] = useForm()
-    const { socket, room: roomID, userID } = useContext(UserContext)
+    const { socket, roomID, userID } = useContext(UserContext)
 
     const editor = useMemo(() => {
+        console.log('=======>', socket)
         return {
             form,
             postMessage: (text) => {
@@ -30,7 +31,7 @@ export const EditorContextProvider = (props) => {
                 })
             }
         }
-    }, [socket])
+    }, [socket, roomID, userID])
     return <EditorContext.Provider value={editor}>
         {props.children}
     </EditorContext.Provider>

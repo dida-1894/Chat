@@ -23,7 +23,7 @@ module.exports = function (socket){
         }
 
         // console.log('message: ' , msg,lobby.rooms.get(roomMsg), lobby.rooms);
-        socket.emit(`chat:message`,lobby.rooms.get(msg.roomID) || [])
+        socket.to(msg.roomID).emit(`chat:message`,lobby.rooms.get(msg.roomID) || [])
     });
 
     socket.on(`login:${USER_CUSTOM}`, (clientID, cb) => {
@@ -43,9 +43,9 @@ module.exports = function (socket){
         socket.emit(`logined:${USER_SERVICE}`, { userID:'service' + randomString(), type: USER_SERVICE })
     })
 
-    socket.on(`room:goto`, (roomID) => {
-        socket.to(roomID)
-        socket.emit(`chat:message`,lobby.rooms.get(roomID) || [])
+    socket.on(`room:goto`, (roomID, fn) => {
+        socket.to(roomID).emit(`chat:message`,lobby.rooms.get(roomID) || [])
+        fn()
     })
 
     socket.on(`room:list`, (cb) => {
