@@ -11,7 +11,9 @@ export const useRoom = () => {
         socket.on('room:list', room => {
             setRoomList(room)
         })
-        // socket.on()
+        return () => {
+            socket.off('room:list')
+        }
     }, [socket])
 
 

@@ -15,7 +15,7 @@ const io = new Server(server, {
 app.set('views', __dirname + '/views');
 app.use(express.static(__dirname + '/public'));
 
-io.on('connection', socket);
+io.on('connection', s => socket(s, io));
 
 server.listen(3200, () => {
   console.log('listening on *:3200');

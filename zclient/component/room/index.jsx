@@ -1,10 +1,8 @@
 import React, { useContext } from 'react'
-import { useRoom } from '../../hook/useRoom'
 import { UserDispatchContext } from '../context/user-context'
 import './style.less'
 
-export const RoomList = () => {
-    const roomList = useRoom()
+export const RoomList = ({ roomList }) => {
     const changeRoom = useContext(UserDispatchContext)
     if (!changeRoom) return null
     return (

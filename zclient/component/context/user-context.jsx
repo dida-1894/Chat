@@ -11,24 +11,32 @@ export const UserContextProvider = (props) => {
     const socket = useSocket()
     useEffect(() => {
         if (!socket) return
+
         socket.emit(`login:${props.userType}`, socket.id)
-        socket.on(`logined:${props.userType}`, userInfo => {
+        let login = userInfo => {
             const user = new User(userInfo.userID, socket)
-            if (userInfo.type == USER_CUSTOM) user.setRoom(user.socket.id)
+            if (userInfo.type == USER_CUSTOM) {
+                user.setRoom(userInfo.roomID)
+            }
 
             setUserInfo(user)
-        })
+        }
+        socket.on(`logined:${props.userType}`, login)
+
+        return () => {
+            socket.off(`logined:${props.userType}`)
+        }
     }, [socket])
 
     const changeRoom = (roomID) => {
 
         if (!userInfo) return
         userInfo.socket.emit('room:goto', roomID, () => {
-            setUserInfo(Object.assign({}, userInfo, {roomID}))
+            let u = Object.assign({}, userInfo, {roomID})
+            console.log(u)
+            setUserInfo(u)
         })
     }
-
-    console.log('======>', userInfo)
 
     if (!userInfo) return <div>登陆中</div>
 
@@ -37,7 +45,7 @@ export const UserContextProvider = (props) => {
             {props.children}
         </UserContext.Provider>
     )
-
+        console.log('=====>', userInfo)
     return (
         <UserContext.Provider value={userInfo}>
             <UserDispatchContext.Provider value={changeRoom}>

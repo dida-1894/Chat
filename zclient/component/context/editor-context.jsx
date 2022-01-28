@@ -10,11 +10,10 @@ export const EditorContextProvider = (props) => {
     const { socket, roomID, userID } = useContext(UserContext)
 
     const editor = useMemo(() => {
-        console.log('=======>', roomID)
         return {
             form,
             postMessage: (text) => {
-                console.log('=====>', text)
+                console.log('=====>', text, roomID)
                 if (!roomID) return message.warning('请选择相应的房间')
                 socket.emit('chat:message', {
                     type: 'text',
@@ -23,6 +22,7 @@ export const EditorContextProvider = (props) => {
                     roomID,
                     userID,
                 })
+                if (['请求人工服务', 'r'].includes(text)) socket.emit('call:service')
             },
             uploadImg: (base64) => {
                 socket.emit('chat:message', {

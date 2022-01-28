@@ -7,7 +7,7 @@ export class User {
     setRoom = function (room) {
         this.roomID = room
     }
-    disconnect = function (){
+    disconnect = function () {
         this.socket.disconnect()
     }
 }
