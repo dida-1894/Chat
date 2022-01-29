@@ -1,17 +1,27 @@
-import React, { useCallback, useContext } from 'react'
-import { Input, Button, Form, message, Upload } from 'antd'
+import React, { useCallback, useContext, useEffect, useRef } from 'react'
+import { Input, Form, message, Upload } from 'antd'
 import { FileImageOutlined } from '@ant-design/icons'
 import './style.less'
 import { EditorContext } from '../../context/editor-context'
 
 export const Talk = () => {
     const editor = useContext(EditorContext)
+    const ref = useRef()
 
     const submit = useCallback(({ text }) => {
-        if (!text) return  message.warning('内容不能为空');
-        editor.postMessage(text)
+        if (!ref) return
+        if (!text.trim()) return  message.warning('内容不能为空');
+        editor.postMessage(text.trim())
         editor.form.resetFields(['text'])
-    }, [editor])
+        // console.log('======>')
+        ref.current.focus({ cursor: 'first' })
+    }, [editor, ref])
+
+    useEffect(() => {
+        if (!ref) return
+
+        ref.current.focus({ cursor: 'first' })
+    }, [])
 
     const uploadImg = useCallback((file) => {
         return new Promise((resolve, reject) => {
@@ -32,17 +42,16 @@ export const Talk = () => {
                     <FileImageOutlined className='item' />
                 </Upload>
             </div>
-            <Form.Item name='text'>
+            <Form.Item name='text' initialValue=''>
                 <Input.TextArea
                     autoSize={{maxRows: 4, minRows: 4}}
                     showCount
+                    ref={ref}
                     maxLength={130}
                     bordered={false}
+                    onPressEnter={editor.form.submit}
                 />
             </Form.Item>
-            <div className='submit'>
-                <Button onClick={editor.form.submit}>发送</Button>
-            </div>
         </Form>
     </div>
 }
