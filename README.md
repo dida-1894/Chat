@@ -6,6 +6,8 @@ npm i
 npm run build
 npm start
 ```
+访问 localhost:3200 或者 localhost:3200/service
+
 ## 需求实现
 1. IM通行
 2. 图片传输

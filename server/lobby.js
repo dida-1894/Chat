@@ -66,6 +66,8 @@ class Custom {
 
             // lobby.rooms.delete(this.room)
             lobby.hotRooms.delete(this.room)
+            this.robot.postMessage(new RMessage(this.room + ' 的用户已离开'))
+            this.robot.io.to(lobby.serviceRoom).emit('room:list', [...lobby.hotRooms])
         });
     }
 
