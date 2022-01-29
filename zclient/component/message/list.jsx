@@ -1,7 +1,7 @@
 import React, { useContext, useEffect, useRef } from 'react'
 import './style.less'
 import { useMessageList } from '../../hook/useMessageList'
-import { UserContext } from '../context/user-context'
+import { UserContext } from '../../context/user-context'
 import { Image } from 'antd'
 import { MESSAGE_TYPE } from '../../constant'
 

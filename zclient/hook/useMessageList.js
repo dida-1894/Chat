@@ -1,5 +1,5 @@
 import { useContext, useEffect, useState } from "react"
-import { UserContext } from "../component/context/user-context"
+import { UserContext } from "../context/user-context"
 
 
 export const useMessageList = () => {

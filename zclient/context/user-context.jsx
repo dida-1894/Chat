@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react'
-import { USER_CUSTOM } from '../../constant'
-import { User } from '../../class/user'
-import { useSocket } from '../../hook/useSocket'
+import { USER_CUSTOM } from '../constant'
+import { User } from '../class/user'
+import {  useSocket} from '../hook/useSocket'
 
 export const UserContext = React.createContext(null)
 export const UserDispatchContext = React.createContext(null)
@@ -33,7 +33,6 @@ export const UserContextProvider = (props) => {
         if (!userInfo) return
         userInfo.socket.emit('room:goto', roomID, () => {
             let u = Object.assign({}, userInfo, {roomID})
-            console.log(u)
             setUserInfo(u)
         })
     }

@@ -1,5 +1,5 @@
 import React, { useContext } from 'react'
-import { UserDispatchContext } from '../context/user-context'
+import { UserDispatchContext } from '../../context/user-context'
 import './style.less'
 
 export const RoomList = ({ roomList }) => {

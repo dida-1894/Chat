@@ -1,11 +1,18 @@
 @import url('../../styles/variable.less');
 
 .talk {
-    position: relative;
+    .submit {
+        text-align: right;
+        margin-top: -42px;
+    }
     button {
-        position: absolute;
-        bottom: 10px;
-        right: 10px;
+        margin-bottom: 10px;
+        margin-right: 10px;
+    }
+    .ant-input-textarea-show-count::after {
+        float: left;
+        line-height: 42px;
+        margin-left: 10px;
     }
     .tools {
         border-top: 1px solid @borderColor;

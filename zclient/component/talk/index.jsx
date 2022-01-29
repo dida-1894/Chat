@@ -2,7 +2,7 @@ import React, { useCallback, useContext } from 'react'
 import { Input, Button, Form, message, Upload } from 'antd'
 import { FileImageOutlined } from '@ant-design/icons'
 import './style.less'
-import { EditorContext } from '../context/editor-context'
+import { EditorContext } from '../../context/editor-context'
 
 export const Talk = () => {
     const editor = useContext(EditorContext)
@@ -41,7 +41,9 @@ export const Talk = () => {
                     bordered={false}
                 />
             </Form.Item>
-            <Button onClick={editor.form.submit}>发送</Button>
+            <div className='submit'>
+                <Button onClick={editor.form.submit}>发送</Button>
+            </div>
         </Form>
     </div>
 }

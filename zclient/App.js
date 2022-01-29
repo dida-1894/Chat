@@ -1,8 +1,8 @@
 import React from 'react'
 import { USER_CUSTOM, USER_SERVICE } from './constant'
 import { Chart } from './component/chat'
-import { EditorContextProvider } from './component/context/editor-context'
-import { UserContextProvider } from './component/context/user-context'
+import { EditorContextProvider } from './context/editor-context'
+import { UserContextProvider } from './context/user-context'
 import { ServiceChart } from './component/chat/service-chart'
 import { BrowserRouter, Routes, Route } from 'react-router-dom'
 

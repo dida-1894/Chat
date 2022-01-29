@@ -5,7 +5,7 @@ import { Talk } from '../talk'
 import { Alert } from 'antd'
 import { useRoom } from '../../hook/useRoom'
 import './style.less'
-import { UserContext } from '../context/user-context'
+import { UserContext } from '../../context/user-context'
 
 export const ServiceChart = () => {
     const roomList = useRoom()

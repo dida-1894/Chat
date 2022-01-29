@@ -1,11 +1,13 @@
 {
-  "name": "my-socket-test",
+  "name": "my-socket-chat",
   "version": "1.0.0",
   "description": "",
-  "main": "index.js",
+  "main": "server/index.js",
   "scripts": {
     "start": "nodemon server/index.js --config nodemon.json",
     "dev": "NODE_ENV=development && webpack server",
+    "dev:server": "NODE_ENV=development && npm start",
+    "build": "NODE_ENV=production && webpack",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "",

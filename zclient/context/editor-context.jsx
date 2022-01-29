@@ -9,6 +9,8 @@ export const EditorContextProvider = (props) => {
     const [form] = useForm()
     const { socket, roomID, userID } = useContext(UserContext)
 
+    console.log('====> form', form)
+
     const editor = useMemo(() => {
         return {
             form,
