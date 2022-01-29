@@ -56,7 +56,6 @@ class Custom {
 
             roomMsg.msg.push(msg)
             lobby.rooms.set(this.room, roomMsg)
-            // console.log('message: ' , msg,lobby.rooms.get(roomMsg), lobby.rooms);
             this.robot.postMessage(msg)
         });
     }
@@ -94,7 +93,6 @@ class Service {
     }
     sendMessage() {
         this.socket.on('chat:message', (msg) => {
-            console.log(msg.roomID, lobby.rooms.has(msg.roomID))
             const room = lobby.rooms.get(msg.roomID)
             if (!room) return console.log('======> no room ID') // cb({ status: 500, errMsg: 'DOES NOT EXIST ROOM' })
             else {
@@ -137,8 +135,6 @@ class Service {
 }
 
 module.exports = function (socket, io){
-    // const roomID = randomString()
-    // console.log('=====> connect', socket.id)
     let robot = new Robot(io, socket)
     socket.on(`login:${USER_CUSTOM}`, () => new Custom(socket, robot))
 

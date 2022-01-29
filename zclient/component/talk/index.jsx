@@ -14,7 +14,6 @@ export const Talk = () => {
     }, [editor])
 
     const uploadImg = useCallback((file) => {
-        console.log(file)
         return new Promise((resolve, reject) => {
             const reader = new FileReader();
             reader.readAsDataURL(file);
