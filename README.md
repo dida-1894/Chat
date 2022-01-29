@@ -111,8 +111,8 @@ export const App = () => {
 `EditorContextProvider` 主要提供 editor 对象，主要提供消息发送的方法 fn 与 输入组件 form 对象
 `UserContextProvider` 主要提供用户信息， 用户login之后server端返回userID，room信息等，service用户比 custom 用户要多一个切换房间的方法
 ### 图片传输
-引入 antD 的 <Upload /> 组件，利用其所封装的 action 事件(`(f: File) => Promise<unkown>`) 将需要上传的图片文件转换成 base64 字符串生成 Message 对象进行传输
-通过<Image src={base64String} /> 进行图片展示
+引入 antD 的 `<Upload />` 组件，利用其所封装的 action 事件(`(f: File) => Promise<unkown>`) 将需要上传的图片文件转换成 base64 字符串生成 Message 对象进行传输
+通过 `<Image src={base64String} /> `进行图片展示
 ```js
 // action 方法如下
 (file) => {
