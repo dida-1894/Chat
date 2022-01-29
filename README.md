@@ -1,5 +1,6 @@
 # Chat
 
+## 运行
 ```sh
 npm i
 npm run build
@@ -11,6 +12,7 @@ npm start
 3. 机器人关键字回复
 
 ### 项目结构
+```
 |_ server // express4 node server
     |_ index // io server 与express app
     |_ lobby // lobby 与Custom 与 Service
@@ -23,6 +25,7 @@ npm start
     |_ styles // 全局样式与less变量
     |_ APP.js // 前端路由与应用APP
     |_ constant // 常量
+```
 ### IM通信
 主要利用sokcet.io对 websocket 的封装支持实现，`/server` 文件夹下为服务端相关代码，主要实现 custom/用户，service/客服，robot/机器人 等不同身份之间的 socket 通信
 
